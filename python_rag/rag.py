@@ -31,7 +31,7 @@ def chatbot_response(query):
     nest_asyncio.apply()
 
     def load_or_parse_data():
-        data_file = "python_rag\data\parsed_data.pkl"
+        data_file = ".\python_rag\data\parsed_data.pkl"
 
         if os.path.exists(data_file):
             # Load the parsed data from the file
@@ -48,7 +48,7 @@ def chatbot_response(query):
                                 result_type="markdown",
                                 parsing_instruction=parsingInstructionUber10k,
                                 max_timeout=5000,)
-            llama_parse_documents = parser.load_data("python_rag/data/resume.pdf")
+            llama_parse_documents = parser.load_data(".\python_rag/data/resume.pdf")
 
             joblib.dump(llama_parse_documents, data_file)
             parsed_data = llama_parse_documents
@@ -59,10 +59,10 @@ def chatbot_response(query):
         
         llama_parse_documents = load_or_parse_data()
         
-        with open('python_rag\data\output.md', 'a') as f: 
+        with open('.\python_rag\data\output.md', 'a') as f: 
             for doc in llama_parse_documents:
                 f.write(doc.text + '\n')
-        markdown_path = "python_rag\data\output.md"
+        markdown_path = ".\python_rag\data\output.md"
         loader = UnstructuredMarkdownLoader(markdown_path)
 
         documents = loader.load()
