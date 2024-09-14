@@ -48,7 +48,7 @@ def chatbot_response(query):
                                 result_type="markdown",
                                 parsing_instruction=parsingInstructionUber10k,
                                 max_timeout=5000,)
-            llama_parse_documents = parser.load_data("./python_rag/data/resume.pdf")
+            llama_parse_documents = parser.load_data("./python_rag/data/Jaganath_resume2024.pdf")
 
             joblib.dump(llama_parse_documents, data_file)
             parsed_data = llama_parse_documents
